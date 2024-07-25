@@ -1,34 +1,16 @@
-<!DOCTYPE "html">
-<html lang="en">
-<head>
-  <title>Newspaper Agency</title>
-  <meta charset="utf8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-</head>
-<body>
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-3">
-      <ul>
-        <li><a href="{% url 'agency:index' %}">Home</a></li>
-        <li><a href="#">All redactors</a></li>
-        <li><a href="#">All topics</a></li>
-        <li><a href="#">All newspapers</a></li>
-      </ul>
-    </div>
-    <div class="col-sm-9">
-      <h1>Newspaper agency home</h1>
-        <p>Welcome to Newspaper Agency</p>
-        <h3>Agency content:</h3>
-        <ul>
-          <li>Number of topics: {{ num_topics }}</li>
-          <li>Number of redactors: {{ num_redactors }}</li>
-          <li>Number of newspapers: {{ num_newspapers }}</li>
-        </ul>
-    </div>
+{% extends "base.html" %}
 
-</body>
+{% block title %}
+  <title>Home page</title>
+{% endblock %}
 
-</html>
+{% block content %}
+  <h1>Newspaper agency home</h1>
+  <p>Welcome to Newspaper Agency</p>
+  <h3>Agency content:</h3>
+  <ul>
+    <li>Number of topics: {{ num_topics }}</li>
+    <li>Number of redactors: {{ num_redactors }}</li>
+    <li>Number of newspapers: {{ num_newspapers }}</li>
+  </ul>
+{% endblock %}
