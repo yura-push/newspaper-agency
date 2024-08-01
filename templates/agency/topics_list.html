@@ -2,4 +2,16 @@
 
 {% block content %}
   <h1>Topics list:</h1>
+
+  {% if topic_list %}
+    <ul>
+    {% for topic in topic_list %}
+      <li>{{ topic.name }}</li>
+      {% empty %}
+    {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no topics in newspaper agency</p>
+  {% endif %}
+
 {% endblock %}
