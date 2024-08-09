@@ -19,4 +19,8 @@ def index(request: HttpRequest) -> HttpResponse:
 
 class TopicsListView(generic.ListView):
     model = Topic
-    template_name = "agency/topics_list.html"
+    template_name = "agency/topic_list.html"
+
+
+class NewspaperListView(generic.ListView):
+    model = Newspaper
