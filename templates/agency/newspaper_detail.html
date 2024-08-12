@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Title: {{ newspaper.title }}</h1>
+  <p><strong>Topic: </strong> {{ newspaper.topic }}</p>
+  <p><strong>Published Date:</strong> {{ newspaper.published_date }}</p>
+  <p>{{ newspaper.content }}</p>
+  <div class="ml-3">
+    <h3>Publishers: </h3>
+      {% for publisher in newspaper.publishers.all  %}
+        <hr>
+        <p class="text-muted">{{ publisher.id }}</p>
+        <p>{{ publisher.first_name }} {{ publisher.last_name }}</p>
+      {% empty %}
+        <p>No information about publishers.</p>
+      {% endfor %}
+  </div>
+{% endblock %}
