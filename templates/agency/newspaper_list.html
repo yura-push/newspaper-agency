@@ -6,7 +6,7 @@
     <ul>
       {% for newspaper in newspaper_list %}
         <li>
-          <a href="#">
+          <a href="{{ newspaper.get_absolute_url }}">
           {{ newspaper.title }}  ({{ newspaper.topic }}) {{ newspaper.published_date }}
           </a>
         </li>
