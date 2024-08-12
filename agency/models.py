@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 from newspaper_agency import settings
 
@@ -43,3 +44,6 @@ class Newspaper(models.Model):
 
     def __str__(self):
         return f"{self.title} {self.content} ({self.published_date})"
+
+    def get_absolute_url(self):
+        return reverse("agency:newspaper-detail", args=[str(self.id)])
