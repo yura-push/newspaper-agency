@@ -20,6 +20,7 @@ def index(request: HttpRequest) -> HttpResponse:
 class TopicsListView(generic.ListView):
     model = Topic
     template_name = "agency/topic_list.html"
+    paginate_by = 5
 
 
 class NewspaperListView(generic.ListView):
