@@ -25,6 +25,7 @@ class TopicsListView(generic.ListView):
 class NewspaperListView(generic.ListView):
     model = Newspaper
     queryset = Newspaper.objects.select_related("topic")
+    paginate_by = 5
 
 
 class RedactorListView(generic.ListView):
