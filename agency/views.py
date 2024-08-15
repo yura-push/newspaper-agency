@@ -33,3 +33,8 @@ class RedactorListView(generic.ListView):
 
 class NewspaperDetailView(generic.DetailView):
     model = Newspaper
+
+
+class RedactorDetailView(generic.DetailView):
+    model = Redactor
+    queryset = Redactor.objects.prefetch_related("newspapers")
