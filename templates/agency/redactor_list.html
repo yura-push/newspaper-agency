@@ -6,7 +6,7 @@
     <ul>
       {% for redactor in redactor_list %}
         <li>
-          <a href="#">
+          <a href="{{ redactor.get_absolute_url }}">
             {{ redactor.first_name }} {{ redactor.last_name }}
           </a>
         </li>
