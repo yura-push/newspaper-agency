@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Topics list:</h1>
+  <h1>Topics list:
+    <a style="float: inherit" href="{% url 'agency:topic-create' %}">+</a>
+  </h1>
 
   {% if topic_list %}
     <ul>
