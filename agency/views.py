@@ -37,6 +37,19 @@ class TopicCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "agency/topic_form.html"
 
 
+class TopicUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Topic
+    fields = "__all__"
+    success_url = reverse_lazy("agency:topic-list")
+    template_name = "agency/topic_form.html"
+
+
+class TopicDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Topic
+    template_name = "agency/topic_confirm_delete.html"
+    success_url = reverse_lazy("agency:topic-list")
+
+
 class NewspaperListView(LoginRequiredMixin, generic.ListView):
     model = Newspaper
     queryset = Newspaper.objects.select_related("topic")
