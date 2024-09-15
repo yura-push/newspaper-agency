@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
+from django.urls import reverse_lazy
 from django.views import generic
 
 from agency.models import Topic, Redactor, Newspaper
@@ -23,10 +24,17 @@ def index(request: HttpRequest) -> HttpResponse:
     return render(request, "agency/index.html", context=context)
 
 
-class TopicsListView(LoginRequiredMixin, generic.ListView):
+class TopicListView(LoginRequiredMixin, generic.ListView):
     model = Topic
     template_name = "agency/topic_list.html"
     paginate_by = 5
+
+
+class TopicCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Topic
+    fields = "__all__"
+    success_url = reverse_lazy("agency:topic-list")
+    template_name = "agency/topic_form.html"
 
 
 class NewspaperListView(LoginRequiredMixin, generic.ListView):
@@ -35,13 +43,20 @@ class NewspaperListView(LoginRequiredMixin, generic.ListView):
     paginate_by = 5
 
 
+class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Newspaper
+
+
+class NewspaperCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Newspaper
+    fields = "__all__"
+    success_url = reverse_lazy("agency:newspaper-list")
+    template_name = "agency/newspaper_form.html"
+
+
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     paginate_by = 5
-
-
-class NewspaperDetailView(LoginRequiredMixin, generic.DetailView):
-    model = Newspaper
 
 
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
