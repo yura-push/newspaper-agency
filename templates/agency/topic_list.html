@@ -8,7 +8,11 @@
   {% if topic_list %}
     <ul>
     {% for topic in topic_list %}
-      <li>{{ topic.name }}</li>
+      <li>
+        {{ topic.name }}
+        <a href="{% url 'agency:topic-update' pk=topic.id %}">UPDATE</a>
+        <a style="color: red" href="{% url 'agency:topic-delete' pk=topic.id %}">DELETE</a>
+      </li>
     {% endfor %}
     </ul>
   {% else %}
