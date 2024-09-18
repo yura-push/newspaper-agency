@@ -14,5 +14,8 @@
       {% empty %}
         <p>No information about publishers.</p>
       {% endfor %}
+    <a href="{% url 'agency:newspaper-update' pk=newspaper.id %}">
+      <input class="btn btn-primary" type="submit" value="Update">
+    </a>
   </div>
 {% endblock %}
