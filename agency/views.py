@@ -74,6 +74,12 @@ class NewspaperUpdateView(LoginRequiredMixin, generic.UpdateView):
     template_name = "agency/newspaper_form.html"
 
 
+class NewspaperDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Newspaper
+    template_name = "agency/newspaper_confirm_delete.html"
+    success_url = reverse_lazy("agency:newspaper-list")
+
+
 class RedactorListView(LoginRequiredMixin, generic.ListView):
     model = Redactor
     paginate_by = 5
