@@ -17,5 +17,8 @@
     <a href="{% url 'agency:newspaper-update' pk=newspaper.id %}">
       <input class="btn btn-primary" type="submit" value="Update">
     </a>
+    <a href="{% url 'agency:newspaper-delete' pk=newspaper.id %}">
+      <input class="btn btn-danger" type="submit" value="Delete">
+    </a>
   </div>
 {% endblock %}
