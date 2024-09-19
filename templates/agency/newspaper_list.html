@@ -13,6 +13,9 @@
           {{ newspaper.title }}  ({{ newspaper.topic }}) {{ newspaper.published_date }}
           </a>
         </li>
+      {% empty %}
+        <p>No newspapers!</p>
+
       {% endfor %}
     </ul>
   {% endif %}
