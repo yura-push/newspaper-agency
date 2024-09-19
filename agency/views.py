@@ -5,6 +5,7 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
+from agency.forms import RedactorCreationForm
 from agency.models import Topic, Redactor, Newspaper
 
 
@@ -88,3 +89,8 @@ class RedactorListView(LoginRequiredMixin, generic.ListView):
 class RedactorDetailView(LoginRequiredMixin, generic.DetailView):
     model = Redactor
     queryset = Redactor.objects.prefetch_related("newspapers")
+
+
+class RedactorCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Redactor
+    form_class = RedactorCreationForm
