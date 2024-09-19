@@ -2,11 +2,16 @@
 
 {% block content %}
   <h1>Redactor: {{ redactor.first_name }} {{ redactor.last_name }}</h1>
+  <p><strong>username:</strong> {{ redactor.username }}</p>
+  <p><strong>years of experience:</strong> {{ redactor.years_of_experience }}</p>
   <hr>
   <h3>Newspapers:</h3>
   <ul>
     {% for newspaper in redactor.newspapers.all %}
       <li>{{ newspaper.publisher.name }} {{ newspaper.title }}</li>
+
+    {% empty %}
+      <p>No newspapers found!</p>
     {% endfor %}
   </ul>
 {% endblock %}
