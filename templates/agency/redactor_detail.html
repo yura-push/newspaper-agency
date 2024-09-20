@@ -14,4 +14,6 @@
       <p>No newspapers found!</p>
     {% endfor %}
   </ul>
+
+  <a href="{% url 'agency:redactor-delete' pk=redactor.id %}" class="btn btn-danger">Delete</a>
 {% endblock %}
