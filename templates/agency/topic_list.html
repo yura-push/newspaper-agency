@@ -1,22 +1,45 @@
-{% extends "base.html" %}
+{% extends 'layouts/base_background.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Topics{% endblock title %}
 
 {% block content %}
-  <h1>Topics list:
-    <a style="float: inherit" href="{% url 'agency:topic-create' %}">+</a>
-  </h1>
+<div class="d-flex align-items-center min-vh-75" style="margin-top: 60px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card card-body blur shadow-blur mx-3">
+          <section class="pt-4 pb-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h1 class="text-gradient text-primary">List of topics:</h1>
+              <a href="{% url 'agency:topic-create' %}" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Add topic
+              </a>
+            </div>
 
-  {% if topic_list %}
-    <ul>
-    {% for topic in topic_list %}
-      <li>
-        {{ topic.name }}
-        <a href="{% url 'agency:topic-update' pk=topic.id %}">UPDATE</a>
-        <a style="color: red" href="{% url 'agency:topic-delete' pk=topic.id %}">DELETE</a>
-      </li>
-    {% endfor %}
-    </ul>
-  {% else %}
-    <p>There are no topics in newspaper agency</p>
-  {% endif %}
-
+            {% if topic_list %}
+              <ul class="list-group">
+                {% for topic in topic_list %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center topic-item">
+                    {{ topic.name }}
+                    <div class="d-flex mt-4">
+                      <a href="{% url 'agency:topic-update' pk=topic.id %}" class="btn btn-primary me-2">
+                        Update
+                      </a>
+                      <a href="{% url 'agency:topic-delete' pk=topic.id %}" class="btn btn-danger">
+                        Delete
+                      </a>
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-muted text-center">No topics!</p>
+            {% endif %}
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

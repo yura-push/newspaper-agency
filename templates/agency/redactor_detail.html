@@ -1,19 +1,49 @@
-{% extends "base.html" %}
+{% extends 'layouts/base_background.html' %}
+
+{% block title %}Redactors details{% endblock title %}
 
 {% block content %}
-  <h1>Redactor: {{ redactor.first_name }} {{ redactor.last_name }}</h1>
-  <p><strong>username:</strong> {{ redactor.username }}</p>
-  <p><strong>years of experience:</strong> {{ redactor.years_of_experience }}</p>
-  <hr>
-  <h3>Newspapers:</h3>
-  <ul>
-    {% for newspaper in redactor.newspapers.all %}
-      <li>{{ newspaper.publisher.name }} {{ newspaper.title }}</li>
+<div class="d-flex align-items-center min-vh-75 mt-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card card-body blur shadow-blur mx-3">
+          <section class="pt-4 pb-4">
+            <!-- Redactor name and Details -->
+            <h1 class="text-gradient text-primary">{{ redactor.first_name }} {{ redactor.last_name }}</h1>
+            <p><strong>Username:</strong> {{ redactor.username }}</p>
+            <p><strong>Years of experience:</strong> {{ redactor.years_of_experience }}</p>
 
-    {% empty %}
-      <p>No newspapers found!</p>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'agency:redactor-update' pk=redactor.id %}" class="btn btn-primary">Update</a>
-  <a href="{% url 'agency:redactor-delete' pk=redactor.id %}" class="btn btn-danger">Delete</a>
-{% endblock %}
+            <!-- Newspapers Section -->
+            <div class="mt-4">
+              <h3>Newspapers:</h3>
+              <ul class="list-group">
+                {% for newspaper in redactor.newspapers.all %}
+                  <li class="list-group-item">
+                    <p>{{ newspaper.publisher.name }} {{ newspaper.title }}</p>
+                  </li>
+                {% empty %}
+                  <li class="list-group-item text-muted">No information about newspapers.</li>
+                {% endfor %}
+              </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex mt-4">
+              <a href="{% url 'agency:redactor-update' pk=redactor.id %}" class="btn btn-primary me-2">
+                Update
+              </a>
+              <a href="{% url 'agency:redactor-delete' pk=redactor.id %}" class="btn btn-danger me-2">
+                Delete
+              </a>
+              <a href="{% url 'agency:redactor-list' %}">
+                <button type="button" class="btn btn-secondary">Cancel</button>
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
