@@ -18,10 +18,10 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-from newspaper_agency import settings
+from newspaper_agency.settings import base
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("agency.urls", namespace="agency")),
     path("accounts/", include("django.contrib.auth.urls")),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(base.STATIC_URL, document_root=base.STATIC_ROOT)
