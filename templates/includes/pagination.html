@@ -1,0 +1,29 @@
+{% load query_transform %}
+{% if is_paginated %}
+  <div class="text-center mt-3">
+    <ul class="pagination justify-content-center" style="font-size: 16px;">
+      {% if page_obj.has_previous %}
+        <li class="page-item">
+          <a class="page-link btn-outline-primary" href="?{% query_transform request page=page_obj.previous_page_number %}"
+             style="padding: 8px 16px; min-width: 80px; white-space: nowrap; display: flex; align-items: center; justify-content: center; border-radius: 6px;">
+            <span class="material-icons" style="margin-right: 4px;">arrow_back</span> Prev
+          </a>
+        </li>
+      {% endif %}
+      <li class="page-item active">
+        <span class="page-link bg-primary text-white"
+              style="padding: 8px 16px; min-width: 100px; white-space: nowrap; display: flex; align-items: center; justify-content: center; border-radius: 6px;">
+          {{ page_obj.number }} of {{ paginator.num_pages }}
+        </span>
+      </li>
+      {% if page_obj.has_next %}
+        <li class="page-item">
+          <a class="page-link btn-outline-primary" href="?{% query_transform request page=page_obj.next_page_number %}"
+             style="padding: 8px 16px; min-width: 80px; white-space: nowrap; display: flex; align-items: center; justify-content: center; border-radius: 6px;">
+            Next <span class="material-icons" style="margin-left: 4px;">arrow_forward</span>
+          </a>
+        </li>
+      {% endif %}
+    </ul>
+  </div>
+{% endif %}

@@ -1,0 +1,71 @@
+{% load i18n static theme_material_kit %}
+
+<!-- Navbar -->
+<div class="container-fluid position-sticky z-index-sticky top-0">
+  <nav class="navbar navbar-expand-lg blur border-radius-xl top-0 z-index-fixed shadow my-3 py-2">
+    <div class="container-fluid">
+      <a class="navbar-brand font-weight-bolder" href="/" rel="tooltip" data-placement="bottom">
+        Newspaper Agency
+      </a>
+      <!-- Toggle Button for Mobile View -->
+      <button class="navbar-toggler shadow-none" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+              aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon mt-2">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </span>
+      </button>
+
+      <!-- Navbar Links -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- Main Pages Dropdown -->
+          <li class="nav-item dropdown mx-2">
+            <a class="nav-link dropdown-toggle" href="#" id="mainPagesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Main Pages
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="mainPagesDropdown">
+              <li><a class="dropdown-item" href="{% url 'agency:index' %}">Home</a></li>
+              <li><a class="dropdown-item" href="{% url 'agency:topic-list' %}">Topics</a></li>
+              <li><a class="dropdown-item" href="{% url 'agency:newspaper-list' %}">Newspapers</a></li>
+              <li><a class="dropdown-item" href="{% url 'agency:redactor-list' %}">Redactors</a></li>
+              <li><h6 class="dropdown-header text-uppercase font-weight-bold">Account Settings</h6></li>
+              {% if request.user.is_authenticated %}
+                <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+              {% endif %}
+            </ul>
+          </li>
+
+          <!-- Logout -->
+          {% if request.user.is_authenticated %}
+            <li class="nav-item mx-2">
+              <form action="{% url 'logout' %}" method="post" class="d-inline">
+                {% csrf_token %}
+                <button type="submit" class="nav-link border-0 bg-transparent">
+                  <i class="fa fa-sign-out me-1"></i> Logout
+                </button>
+              </form>
+            </li>
+          {% else %}
+            <li class="nav-item mx-2">
+              <a class="nav-link" href="{% url 'login' %}">
+                <i class="fa fa-sign-in me-1"></i> Sign In
+              </a>
+            </li>
+          {% endif %}
+
+          <!-- GitHub Repository Button -->
+          <div class="position-relative d-lg-inline-flex" style="margin-left: auto;">
+            <a class="nav-link" href="https://github.com/yura-push/newspaper-agency" target="_blank"
+               style="background-color: #ff4081; color: white; white-space: nowrap; padding: 0 10px; display: flex; align-items: center; justify-content: center; border: none; border-radius: 20px; font-size: 12px;">
+              PROJECT ON GITHUB
+            </a>
+          </div>
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+</div>

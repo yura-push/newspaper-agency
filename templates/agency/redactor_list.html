@@ -1,0 +1,39 @@
+{% extends 'layouts/base_background.html' %}
+{% load crispy_forms_filters %}
+
+{% block title %}Redactors{% endblock title %}
+
+{% block content %}
+<div class="d-flex align-items-center min-vh-75" style="margin-top: 60px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card card-body blur shadow-blur mx-3">
+          <section class="pt-4 pb-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+              <h1 class="text-gradient text-primary">Redactors</h1>
+              <a href="{% url 'agency:redactor-create' %}" class="btn btn-primary btn-sm">
+                <i class="fas fa-plus"></i> Add redactor
+              </a>
+            </div>
+
+            {% if redactor_list %}
+              <ul class="list-group">
+                {% for redactor in redactor_list %}
+                  <li class="list-group-item d-flex justify-content-between align-items-center redactor-item">
+                    <a href="{{ redactor.get_absolute_url }}" class="text-dark">
+                      <strong>{{ redactor.first_name }} {{ redactor.last_name }}</strong>
+                    </a>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p class="text-muted text-center">No redactors!</p>
+            {% endif %}
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "layouts/base_background.html" %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card card-body blur shadow-blur mx-3">
+          <!-- Form Heading -->
+          <h1 class="text-gradient text-primary">{{ object|yesno:"Update,Create" }} redactor:</h1>
+
+          <!-- Form Start -->
+          <form action="" method="post" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <!-- Submit Button -->
+            <div class="text-center mt-4">
+              <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+              <a href="{% url 'agency:redactor-list' %}" class="btn btn-secondary btn-lg">Cancel</a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'layouts/base_background.html' %}
+
+{% block title %}Newspaper Details{% endblock title %}
+
+{% block content %}
+<div class="d-flex align-items-center min-vh-75 mt-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card card-body blur shadow-blur mx-3">
+          <section class="pt-4 pb-4">
+            <!-- Newspaper Title and Details -->
+            <h1 class="text-gradient text-primary">{{ newspaper.title }}</h1>
+            <p><strong>Topic:</strong> {{ newspaper.topic }}</p>
+            <p><strong>Published Date:</strong> {{ newspaper.published_date }}</p>
+            <p>{{ newspaper.content }}</p>
+
+            <!-- Publishers Section -->
+            <div class="mt-4">
+              <h3>Publishers</h3>
+              <ul class="list-group">
+                {% for publisher in newspaper.publishers.all %}
+                  <li class="list-group-item">
+                    <p class="mb-1 text-muted">ID: {{ publisher.id }}</p>
+                    <p>{{ publisher.first_name }} {{ publisher.last_name }}</p>
+                  </li>
+                {% empty %}
+                  <li class="list-group-item text-muted">No information about publishers.</li>
+                {% endfor %}
+              </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="d-flex mt-4">
+              <a href="{% url 'agency:newspaper-update' pk=newspaper.id %}" class="btn btn-primary me-2">
+                Update
+              </a>
+              <a href="{% url 'agency:newspaper-delete' pk=newspaper.id %}" class="btn btn-danger me-2">
+                Delete
+              </a>
+              <a href="{% url 'agency:newspaper-list' %}">
+                <button type="button" class="btn btn-secondary">Cancel</button>
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
