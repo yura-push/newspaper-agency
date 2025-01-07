@@ -4,7 +4,7 @@ Django project for managing newspapers, redactors and topics in Newspaper Agency
 
 ## Check  it out!
 
-[Newspaper Agency project deployed to render](https://newspaper-agency-mate.render.com/)
+[Newspaper Agency project deployed to render](https://newspaper-agency-mate-e5hq.onrender.com)
 
 ## Installation
 
