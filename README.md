@@ -6,6 +6,13 @@ Django project for managing newspapers, redactors and topics in Newspaper Agency
 
 [Newspaper Agency project deployed to render](https://newspaper-agency-mate-e5hq.onrender.com)
 
+
+Test user to review functionality.
+```
+login: user
+password: user12345
+```
+
 ## Installation
 
 Python3 must be already installed
